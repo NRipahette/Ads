@@ -19,7 +19,9 @@ public class AdManager : MonoBehaviour ,IUnityAdsListener
 
     void Start()
     {
-        myButton = GetComponent<Button>();
+        myButton = GameObject.FindObjectOfType<Button>();
+
+        Debug.Log(myButton.name);
 
         // Set interactivity to be dependent on the Placement’s status:
         myButton.interactable = Advertisement.IsReady(myPlacementId);
