@@ -14,21 +14,29 @@ public class BannerAdScript : MonoBehaviour
     {
         Advertisement.Initialize(gameId, testMode);
         Advertisement.Banner.SetPosition(BannerPosition.TOP_CENTER);
-        Advertisement.Load(gameId);
+        //Advertisement.Banner.Load(placementId);
+
         StartCoroutine(ShowBannerWhenReady());
 
 
+    }
+
+    void Update()
+    {
+        //if (Advertisement.Banner.isLoaded)
+        //    Advertisement.Banner.Show(placementId);
+        //Debug.Log(Advertisement.Banner.isLoaded);
     }
 
     IEnumerator ShowBannerWhenReady()
     {
         while (!Advertisement.IsReady(placementId))
         {
-
-            
+            Debug.Log("1" + Advertisement.IsReady(placementId));
+            Advertisement.Banner.Show(placementId);
             yield return new WaitForSeconds(0.5f);
         }
-        Debug.Log(Advertisement.IsReady(placementId));
-        Advertisement.Banner.Show(placementId);
+        
+
     }
 }

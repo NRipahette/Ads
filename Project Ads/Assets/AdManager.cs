@@ -8,21 +8,18 @@ using UnityEngine.UI;
 public class AdManager : MonoBehaviour ,IUnityAdsListener
 {
 
-#if UNITY_IOS
-    private string gameId = "3483563";
-#elif UNITY_ANDROID
     private string gameId = "3483562";
-#endif
 
     Button myButton;
+    GameObject rewardText;
     public string myPlacementId = "rewardedVideo";
 
     void Start()
     {
         myButton = GameObject.FindObjectOfType<Button>();
-
-        Debug.Log(myButton.name);
-
+        rewardText = GameObject.Find("TextReward");
+        //rewardText = FindObjectOfType<Canvas>().GetComponent<Text>();
+        rewardText.gameObject.SetActive(false);
         // Set interactivity to be dependent on the Placement’s status:
         myButton.interactable = Advertisement.IsReady(myPlacementId);
 
@@ -55,6 +52,11 @@ public class AdManager : MonoBehaviour ,IUnityAdsListener
         // Define conditional logic for each ad completion status:
         if (showResult == ShowResult.Finished)
         {
+            rewardText.gameObject.SetActive(true);
+            //Debug.Log(FindObjectOfType<Canvas>().GetComponent<Text>().name);
+           // FindObjectOfType<Canvas>().GetComponent<Text>().gameObject.SetActive(true);
+            //Debug.Log("Rewarded");
+        
             // Reward the user for watching the ad to completion.
         }
         else if (showResult == ShowResult.Skipped)
