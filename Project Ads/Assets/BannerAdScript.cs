@@ -31,8 +31,7 @@ public class BannerAdScript : MonoBehaviour
     IEnumerator ShowBannerWhenReady()
     {
         while (!Advertisement.IsReady(placementId))
-        {
-            Debug.Log("1" + Advertisement.IsReady(placementId));
+        { 
             Advertisement.Banner.Show(placementId);
             yield return new WaitForSeconds(0.5f);
         }
